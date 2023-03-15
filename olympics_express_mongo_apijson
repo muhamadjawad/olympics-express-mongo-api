@@ -1,0 +1,134 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "rest_mongos_apis",
+    "dateExported": "2023-03-15T07:27:28.109Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "b3c5a83c-2994-46cd-bc40-6bcf8fd47363",
+            "colId": "c76cfd81-dccb-4d20-b81c-21bc629aa355",
+            "containerId": "",
+            "name": "get mens record",
+            "url": "/mens",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-03-14T07:26:44.118Z",
+            "modified": "2023-03-14T12:13:38.843Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"sort\": true\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "f14ea879-2bc3-4cee-9e9d-f41d3d9a356a",
+            "colId": "c76cfd81-dccb-4d20-b81c-21bc629aa355",
+            "containerId": "",
+            "name": "create mens record",
+            "url": "/mens",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-03-14T11:07:04.136Z",
+            "modified": "2023-03-14T12:13:24.143Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"ranking\":6 ,\n  \"name\": \"Sixth\",\n  \"dob\": \"12 Dec 1998\",\n  \"country\": \"Indiaa\",\n  \"score\": \"34\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "ae973f46-be20-44f9-8b79-235d3b6d9891",
+            "colId": "c76cfd81-dccb-4d20-b81c-21bc629aa355",
+            "containerId": "",
+            "name": "get single men",
+            "url": "/mens/64105b1ee913a3d1e8126931",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2023-03-14T11:36:02.940Z",
+            "modified": "2023-03-14T11:41:59.297Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "14d384ed-ac56-40ce-bf21-9c3f8f639ce5",
+            "colId": "c76cfd81-dccb-4d20-b81c-21bc629aa355",
+            "containerId": "",
+            "name": "update Men Record",
+            "url": "/mens/64105b1ee913a3d1e8126931",
+            "method": "PATCH",
+            "sortNum": 40000,
+            "created": "2023-03-14T11:41:39.253Z",
+            "modified": "2023-03-14T11:45:16.645Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"_id\": \"64105b1ee913a3d1e8126931\",\n  \"ranking\": 3,\n  \"name\": \"Teesra Update nhkrna\",\n  \"dob\": \"2023-12-11T19:00:00.000Z\",\n  \"country\": \"Europe\",\n  \"score\": 34,\n  \"event\": \"100m\",\n  \"__v\": 0\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "64d097b2-1898-4e2f-b37f-e2890875a9e1",
+            "colId": "c76cfd81-dccb-4d20-b81c-21bc629aa355",
+            "containerId": "",
+            "name": "Delete Men Record",
+            "url": "/mens/64105b1ee913a3d1e8126931",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2023-03-14T11:48:21.644Z",
+            "modified": "2023-03-14T11:48:38.353Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "463fa056-6e93-4e99-8c84-c192da5d9f7c",
+            "colId": "c76cfd81-dccb-4d20-b81c-21bc629aa355",
+            "containerId": "",
+            "name": "get all events",
+            "url": "/api/events",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2023-03-15T05:18:33.618Z",
+            "modified": "2023-03-15T05:18:59.932Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "fd4b8189-2c11-40f5-8c9a-827895e55a5f",
+            "colId": "c76cfd81-dccb-4d20-b81c-21bc629aa355",
+            "containerId": "",
+            "name": "create event",
+            "url": "/api/events",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2023-03-15T06:39:35.270Z",
+            "modified": "2023-03-15T07:11:41.542Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"PSL-3\",\n  \"date\": \"03 mar 2022\",\n  \"winner\": \"LAhore QALAND\",\n  \"country\": \"Pakistan\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ],
+    "settings": {
+        "headers": [],
+        "tests": [],
+        "options": {
+            "baseUrl": "localhost:3000"
+        }
+    }
+}
