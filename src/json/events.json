@@ -1,0 +1,26 @@
+[
+  {
+    "name": "fifa-22",
+    "date": "2023-03-30T19:00:00.000+00:00",
+    "winner": "Argentina",
+    "country": "pak"
+  },
+  {
+    "name": "fifa-14",
+    "date": "2023-03-30T19:00:00.000+00:00",
+    "winner": "Germany",
+    "country": "pak"
+  },
+  {
+    "name": "fifa-18",
+    "date": "2023-03-30T19:00:00.000+00:00",
+    "winner": "France",
+    "country": "pak"
+  },
+  {
+    "name": "fifa-10",
+    "date": "2023-03-30T19:00:00.000+00:00",
+    "winner": "Spain",
+    "country": "pak"
+  }
+]
