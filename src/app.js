@@ -1,3 +1,4 @@
+require("dotenv").config()
 const express = require('express');
 require("../src/db/conn")
 const port = process.env.PORT || 3000;
@@ -13,7 +14,9 @@ app.use(router)
 
 app.use("/api", event_routes)
 
-
+console.log(
+    process.env.MONGO_DB_URL
+)
 app.listen(port, () => {
     console.log("listening on port", port)
 })
