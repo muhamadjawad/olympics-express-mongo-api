@@ -14,10 +14,6 @@ app.use(router)
 
 app.use("/api", event_routes)
 
-console.log(
-    process.env.MONGO_DB_URL
-)
-
 connectDB()
 app.listen(port, () => {
     console.log("listening on port", port)

@@ -1,12 +1,17 @@
 const { eventsCollection } = require("../models/events")
 
 const getAllEvents = async (req, res) => {
-    console.log("O Event");
 
     try {
-        const { country, name, winner } = req.query;
-        const queryObject = {}
-        console.log("req.query", req.query)
+        const DEFAULT_LIMIT = 10;
+        const DEFAULT_PAGE = 1
+
+        let { country, name, winner, sort, select, page, limit } = req.query;
+        let queryObject = {}
+        let sortQuery = {}
+        let totalEvents = 0
+        let totalPages = 0
+
         if (name) {
             queryObject.name = { $regex: name, $options: "i" }//regex for search
         }
@@ -19,9 +24,38 @@ const getAllEvents = async (req, res) => {
             queryObject.winner = { $regex: winner, $options: "i" }
         }
 
-        const allEvents = await eventsCollection.find(queryObject).sort("-date") // if sort is simple its ascending , if - then descending
+        page = Number(page) || DEFAULT_PAGE
+        limit = Number(limit) || DEFAULT_LIMIT
 
-        res.status(200).json(allEvents)
+        let skip = (page - 1) * limit
+
+        totalEvents = await eventsCollection.find().estimatedDocumentCount()
+        totalPages = Math.ceil(totalEvents / limit)
+
+        let apiData = eventsCollection.find(queryObject)
+            .select(["name", "winner", "country", "date"])
+            .skip(skip)
+            .limit(limit)
+
+        if (sort) {
+            sortQuery = sort.replace(",", " ")
+
+            apiData = apiData.sort(sortQuery)
+        }
+
+        const allEvents = await apiData
+
+        let metaData = {
+            "limit_per_page": limit,
+            "page": page,
+            "total_pages": totalPages,
+            "total_records": totalEvents
+        }
+
+        res.status(200).json({
+            "_metadata": metaData,
+            "records": allEvents,
+        })
 
     } catch (error) {
         console.log("error", error)
