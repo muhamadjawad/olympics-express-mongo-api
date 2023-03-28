@@ -40,7 +40,7 @@ const eventsSchema = new mongoose.Schema({
     }
 },
     {//to save the created and updation time so no date_created feild is  required to create
-        timestamps: { createdAt: 'created_ato', updatedAt: "updated_at" }
+        timestamps: { createdAt: 'created_at', updatedAt: "updated_at" }
 
     }
 )
