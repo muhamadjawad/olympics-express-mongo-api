@@ -1,7 +1,9 @@
 
 const events = require("./events")
+const auth = require('./auth')
 
 
 module.exports = {
-    events
+    events,
+    auth
 }
