@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
-const { response } = require("express");
+const jwt = require("jsonwebtoken");
+// const { response } = require("express");
 const { userCollection } = require("../models/users");
 
 const signUp = async (req) => {
@@ -47,7 +48,7 @@ const signUp = async (req) => {
 
     if (!result) {
         return userCollection.create(userData)
-            .then((data, err) => {
+            .then((user, err) => {
                 if (err) {
                     console.log("Error", err)
                     return {
@@ -55,7 +56,8 @@ const signUp = async (req) => {
                     }
                 }
                 else {
-                    return data
+                    const { _id, firstName, lastName, email, role, fullName } = user;
+                    return { _id, firstName, lastName, email, role, fullName }
                     // res
                     //     .status(StatusCodes.CREATED)
                     // .json({ message: "User created Successfully" });
@@ -66,4 +68,46 @@ const signUp = async (req) => {
 
 }
 
-module.exports = { signUp }
+const signIn = async (req, res) => {
+    try {
+        const { username, email, password } = req.body;
+        const user = await userCollection.findOne({ email: email });
+
+        if (user) {
+            let resp = ""
+            if (user.authenticate(password)) {
+                try {
+                    const token = jwt.sign(
+                        { _id: user._id, role: user.role },
+                        "process.env.JWT_SECRET", { expiresIn: "30d" });
+                    const { _id, firstName, lastName, email, role, fullName } = user;
+                    resp = {
+                        token,
+                        user: { _id, firstName, lastName, email, role, fullName },
+                    }
+                } catch (error) {
+                    console.log("errir", error)
+                }
+
+
+            } else {
+                console.log("Error aya")
+                res.status(401).json({
+                    error: true,
+                    message: "Something went wrong!",
+                });
+            }
+            res.status(200).json(resp)
+
+        } else {
+            res.status(400).json({
+                error: true,
+                message: "User does not exist..!",
+            });
+        }
+    } catch (error) {
+        res.status(400).json({ error });
+    }
+};
+
+module.exports = { signUp, signIn }

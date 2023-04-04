@@ -1,4 +1,5 @@
 const { check, validationResult } = require("express-validator");
+const jwt = require("jsonwebtoken");
 
 const validateSignUpRequest = [
     check("firstName").notEmpty().withMessage("First Name is required"),
@@ -9,6 +10,13 @@ const validateSignUpRequest = [
         .withMessage("Password must be at least 6 character long"),
 ];
 
+const validateSignInRequest = [
+    check("username").notEmpty().withMessage("username is required"),
+    check("email").isEmail().withMessage("Valid Email required"),
+    check("password")
+        .isLength({ min: 6 })
+        .withMessage("Password must be at least 6 character long"),
+];
 
 const isRequestValidated = (req, res, next) => {
     const errors = validationResult(req);
@@ -21,7 +29,20 @@ const isRequestValidated = (req, res, next) => {
     next()
 }
 
+const verifyJWT = (req, res, next) => {
+    console.log("req.headers", req.headers.jwt)
+    
+    // 
+    
+    jwt.verify()
+
+    next()
+
+}
+
 module.exports = {
     validateSignUpRequest,
-    isRequestValidated
+    validateSignInRequest,
+    isRequestValidated,
+    verifyJWT
 }

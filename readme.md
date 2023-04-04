@@ -1,3 +1,9 @@
+# Run project as NODEMON
+
+```
+nodemon --exec npm start
+```
+
 ## MONGO DB COMMANDS FRO DATABASES
 
 ### View all dbs
@@ -97,6 +103,6 @@ dp.collection_name.drop()
 ```
 
  db.collection_name.update({name:""},{
-    
+
  })
 ```
