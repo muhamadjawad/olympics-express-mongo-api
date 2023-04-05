@@ -56,7 +56,6 @@ router.get("/mens/:id", async (req, res) => {
 
     }
     catch (error) {
-        console.log("err", error)
         res.status(400).
             send(error)
     }
@@ -82,7 +81,6 @@ router.patch("/mens/:id", async (req, res) => {
 
     }
     catch (error) {
-        console.log("err", error)
         res.status(500).
             send(error)
     }
@@ -103,7 +101,6 @@ router.delete("/mens/:id", async (req, res) => {
 
     }
     catch (error) {
-        console.log("err", error)
         res.status(500).
             send(error)
     }

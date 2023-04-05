@@ -69,7 +69,6 @@ const signIn = async (req, res, next) => {
                     }
                 } catch (error) {
                     CustomError()
-                    // console.log("errir", error)
                 }
 
 

@@ -22,8 +22,7 @@ const signInUser = async (req, res, next) => {
         // res.status(200).json(response)
 
     } catch (error) {
-        console.log("err", error)
-
+        next(error)
     }
 }
 
