@@ -1,8 +1,7 @@
 require("dotenv").config()
 
-const { check, validationResult } = require("express-validator");
+const { check } = require("express-validator");
 const jwt = require("jsonwebtoken");
-const { CustomError } = require("../utils/customError");
 
 const validateSignUpRequest = [
     check("firstName").notEmpty().withMessage("First Name is required"),
@@ -20,18 +19,6 @@ const validateSignInRequest = [
         .isLength({ min: 6 })
         .withMessage("Password must be at least 6 character long"),
 ];
-
-const isRequestValidated = (req, res, next) => {
-    const errors = validationResult(req);
-    if (errors.array().length > 0) {
-        CustomError(errors.array()[0].msg, 401)
-        // return res.status(400).json({
-        //     "error": true,
-        //     "message": errors.array()[0].msg
-        // })
-    }
-    next()
-}
 
 const verifyJWT = (req, res, next) => {
     try {
@@ -57,6 +44,5 @@ const verifyJWT = (req, res, next) => {
 module.exports = {
     validateSignUpRequest,
     validateSignInRequest,
-    isRequestValidated,
     verifyJWT
 }

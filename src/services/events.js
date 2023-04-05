@@ -1,4 +1,5 @@
-const { eventsCollection } = require("../models/events")
+const { eventsCollection } = require("../models/events");
+const { CustomError } = require("../utils/customError");
 
 const getAllEvents = async (req) => {
     const DEFAULT_LIMIT = 10;
@@ -55,12 +56,18 @@ const getAllEvents = async (req) => {
 
 const postEvent = async (req) => {
     const body = req.body
+    // const { name, date, edition, winner } = body
+    const user = await eventsCollection.find(body);
 
-    const newRecord = new eventsCollection(body)
-    const insertEvent = await newRecord.save()
+    if (user.length === 0) {
+        const newRecord = new eventsCollection(body)
+        const insertEvent = await newRecord.save()
 
-    return insertEvent
-
+        return insertEvent
+    }
+    else {
+        CustomError(`already exists`, 403)
+    }
 }
 
 module.exports = {
