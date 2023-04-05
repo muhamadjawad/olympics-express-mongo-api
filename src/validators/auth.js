@@ -2,6 +2,7 @@ require("dotenv").config()
 
 const { check, validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
+const { CustomError } = require("../utils/customError");
 
 const validateSignUpRequest = [
     check("firstName").notEmpty().withMessage("First Name is required"),
@@ -23,10 +24,11 @@ const validateSignInRequest = [
 const isRequestValidated = (req, res, next) => {
     const errors = validationResult(req);
     if (errors.array().length > 0) {
-        return res.status(400).json({
-            "error": true,
-            "message": errors.array()[0].msg
-        })
+        CustomError(errors.array()[0].msg, 401)
+        // return res.status(400).json({
+        //     "error": true,
+        //     "message": errors.array()[0].msg
+        // })
     }
     next()
 }

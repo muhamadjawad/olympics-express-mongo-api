@@ -15,10 +15,10 @@ const createUser = async (req, res, next) => {
     }
 }
 
-const signInUser = async (req, res) => {
+const signInUser = async (req, res, next) => {
 
     try {
-        const response = await auth.signIn(req, res)
+        const response = await auth.signIn(req, res, next)
         // res.status(200).json(response)
 
     } catch (error) {

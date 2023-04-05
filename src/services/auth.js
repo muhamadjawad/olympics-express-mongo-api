@@ -11,7 +11,7 @@ const signUp = async (req) => {
 
     const hash_password = await bcrypt.hash(password, 10);
     if (!firstName || !lastName || !username || !email || !password) {
-        CustomError(`enter all entries`, 400)
+        CustomError(`Enter all entries`, 401)
     }
 
     const userData = {
@@ -25,11 +25,11 @@ const signUp = async (req) => {
     let result = ""
     // result = await userCollection.findOne({ email })
     if (await userCollection.findOne({ email })) {
-        CustomError(`email already exists`, 403)
+        CustomError(`This email is already taken`, 401)
     }
     // result = await userCollection.findOne({ username })
     if (await userCollection.findOne({ username })) {
-        CustomError(`username already exist`, 403)
+        CustomError(`This username is already taken`, 401)
     }
 
 
@@ -37,7 +37,7 @@ const signUp = async (req) => {
         return userCollection.create(userData)
             .then((user, err) => {
                 if (err) {
-                    CustomError(`something went wrong`, 500)
+                    CustomError(`Something went wrong`, 500)
                 }
                 else {
                     const { _id, firstName, lastName, email, role, fullName } = user;
@@ -49,13 +49,14 @@ const signUp = async (req) => {
 
 }
 
-const signIn = async (req, res) => {
+const signIn = async (req, res, next) => {
     try {
         const { username, email, password } = req.body;
-        const user = await userCollection.findOne({ email: email });
+        // const user = await userCollection.findOne({ email: email });
 
-        if (user) {
+        if (await userCollection.findOne({ email: email }) && await userCollection.findOne({ username: username })) {
             let resp = ""
+            const user = await userCollection.findOne({ email: email, username, username })
             if (await user.authenticate(password)) {
                 try {
                     const token = jwt.sign(
@@ -67,27 +68,22 @@ const signIn = async (req, res) => {
                         user: { _id, firstName, lastName, email, role, fullName },
                     }
                 } catch (error) {
-                    console.log("errir", error)
+                    CustomError()
+                    // console.log("errir", error)
                 }
 
 
             } else {
-                console.log("Error aya")
-                res.status(401).json({
-                    error: true,
-                    message: "Something went wrong!",
-                });
+                CustomError("Invalid Credentials", 401)
             }
             res.status(200).json(resp)
 
         } else {
-            res.status(400).json({
-                error: true,
-                message: "User does not exist..!",
-            });
+            CustomError("Invalid Credentials", 401)
         }
     } catch (error) {
-        res.status(400).json({ error });
+        next(error)
+        // res.status(400).json({ error });
     }
 };
 
