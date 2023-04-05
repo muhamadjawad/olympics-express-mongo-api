@@ -76,7 +76,7 @@ const signIn = async (req, res) => {
 
         if (user) {
             let resp = ""
-            if (user.authenticate(password)) {
+            if (await user.authenticate(password)) {
                 try {
                     const token = jwt.sign(
                         { _id: user._id, role: user.role },

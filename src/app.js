@@ -17,7 +17,6 @@ app.use(express.json())
 
 app.use("/api/auth", routers.auth)
 app.use("/api", verifyJWT, [routers.men, routers.events])
-// app.use("/api", verifyJWT, routers.events)
 
 // app.use((err, req, res, next) => {
 
