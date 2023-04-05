@@ -1,3 +1,4 @@
+require("dotenv").config()
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 // const { response } = require("express");
@@ -79,7 +80,7 @@ const signIn = async (req, res) => {
                 try {
                     const token = jwt.sign(
                         { _id: user._id, role: user.role },
-                        "process.env.JWT_SECRET", { expiresIn: "30d" });
+                        process.env.JWT_SECRET, { expiresIn: "30d" });
                     const { _id, firstName, lastName, email, role, fullName } = user;
                     resp = {
                         token,
