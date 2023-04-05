@@ -32,20 +32,23 @@ const isRequestValidated = (req, res, next) => {
 }
 
 const verifyJWT = (req, res, next) => {
-    const tokenString = req.headers.authorization
-    let token = ""
-    // 
-    if (tokenString) {
-        if (tokenString.startsWith("Bearer ")) {
-            token = tokenString.substring(7, tokenString.length);
-            jwt.verify(token, process.env.JWT_SECRET)
+    try {
+        const tokenString = req.headers.authorization
+        let token = ""
+        // 
+        if (tokenString) {
+            if (tokenString.startsWith("Bearer ")) {
+                token = tokenString.substring(7, tokenString.length);
+                jwt.verify(token, process.env.JWT_SECRET)
+            }
         }
-    }
-    else {
-        console.log("Error 401")
+        next()
+    } catch (error) {
+        next(error)
     }
 
-    next()
+
+
 
 }
 

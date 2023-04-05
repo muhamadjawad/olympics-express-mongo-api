@@ -2,7 +2,7 @@
 const { userCollection } = require("../models/users");
 const { auth } = require('../services')
 
-const createUser = async (req, res) => {
+const createUser = async (req, res, next) => {
 
     try {
         const response = await auth.signUp(req)
@@ -10,7 +10,7 @@ const createUser = async (req, res) => {
         res.status(200).json(response)
 
     } catch (error) {
-        console.log("err", error)
+        next(error)
 
     }
 }

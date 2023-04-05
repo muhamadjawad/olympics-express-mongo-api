@@ -1,7 +1,7 @@
 const { eventsCollection } = require("../models/events")
 const { events } = require('../services')
 
-const findAllEvents = async (req, res) => {
+const findAllEvents = async (req, res, next) => {
 
     try {
         const { metaData, allEvents } = await events.getAllEvents(req)
@@ -11,12 +11,13 @@ const findAllEvents = async (req, res) => {
         })
 
     } catch (error) {
-        console.log("error", error)
+        next(error);
+        // console.log("error", error)
     }
 
 }
 
-const createEvent = async (req, res) => {
+const createEvent = async (req, res, next) => {
 
     try {
         const insertedEvent = await events.postEvent(req)
@@ -24,9 +25,10 @@ const createEvent = async (req, res) => {
 
     }
     catch (error) {
-        res.status(
-            400
-        ).send(error)
+        next(error)
+        // res.status(
+        //     400
+        // ).send(error)
 
     }
 }

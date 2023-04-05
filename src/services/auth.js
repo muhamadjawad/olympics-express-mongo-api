@@ -3,23 +3,15 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 // const { response } = require("express");
 const { userCollection } = require("../models/users");
+const { CustomError } = require("../utils/customError");
 
 const signUp = async (req) => {
 
     const { firstName, lastName, username, email, password } = req.body;
-    var statusCode = 400
-    var error = false;
-    var errorMessage = '';
-    var createdUser = {}
-    var response = {}
-
 
     const hash_password = await bcrypt.hash(password, 10);
     if (!firstName || !lastName || !username || !email || !password) {
-        return {
-            error: true,
-            message: `enter all entries`
-        }
+        CustomError(`enter all entries`, 400)
     }
 
     const userData = {
@@ -31,19 +23,13 @@ const signUp = async (req) => {
     };
 
     let result = ""
-    result = await userCollection.findOne({ email })
-    if (result) {
-        return {
-            error: true,
-            message: `email already exist`
-        }
+    // result = await userCollection.findOne({ email })
+    if (await userCollection.findOne({ email })) {
+        CustomError(`email already exists`, 403)
     }
-    result = await userCollection.findOne({ username })
-    if (result) {
-        return {
-            error: true,
-            message: `username already exist`
-        }
+    // result = await userCollection.findOne({ username })
+    if (await userCollection.findOne({ username })) {
+        CustomError(`username already exist`, 403)
     }
 
 
@@ -51,17 +37,11 @@ const signUp = async (req) => {
         return userCollection.create(userData)
             .then((user, err) => {
                 if (err) {
-                    console.log("Error", err)
-                    return {
-                        error: true,
-                    }
+                    CustomError(`something went wrong`, 500)
                 }
                 else {
                     const { _id, firstName, lastName, email, role, fullName } = user;
                     return { _id, firstName, lastName, email, role, fullName }
-                    // res
-                    //     .status(StatusCodes.CREATED)
-                    // .json({ message: "User created Successfully" });
                 }
 
             });

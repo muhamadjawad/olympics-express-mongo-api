@@ -4,7 +4,7 @@ const router = new express.Router()
 const MensRanking = require("../models/mens")
 
 // POST 
-router.post("/mens", async (req, res) => {
+router.post("/mens", async (req, res, next) => {
     try {
         const body = req.body
 
@@ -13,9 +13,10 @@ router.post("/mens", async (req, res) => {
         res.status(201).send(insertMens)
     }
     catch (error) {
-        res.status(
-            400
-        ).send(error)
+        next(error)
+        // res.status(
+        //     400
+        // ).send(error)
 
     }
 })
