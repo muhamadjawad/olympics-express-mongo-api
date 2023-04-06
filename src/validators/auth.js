@@ -2,6 +2,7 @@ require("dotenv").config()
 
 const { check } = require("express-validator");
 const jwt = require("jsonwebtoken");
+const { CustomError } = require("../utils/customError");
 
 const validateSignUpRequest = [
     check("firstName").notEmpty().withMessage("First Name is required"),
@@ -28,7 +29,18 @@ const verifyJWT = (req, res, next) => {
         if (tokenString) {
             if (tokenString.startsWith("Bearer ")) {
                 token = tokenString.substring(7, tokenString.length);
-                jwt.verify(token, process.env.JWT_SECRET)
+                try {
+                    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+                        if (err) {
+                            CustomError(`Invalid Bearer token`, 498)
+                        }
+                    })
+                } catch (error) {
+                    next(error)
+                }
+            }
+            else {
+                CustomError(`Invalid Bearer token`, 498)
             }
         }
         next()

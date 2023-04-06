@@ -61,7 +61,8 @@ const postEvent = async (req) => {
 
     if (user.length === 0) {
         const newRecord = new eventsCollection(body)
-        const insertEvent = await newRecord.save()
+        const { name, winner, edition, date } = await newRecord.save()
+        const insertEvent = { name, date, winner, edition }
 
         return insertEvent
     }
