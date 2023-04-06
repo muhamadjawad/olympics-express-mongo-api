@@ -16,7 +16,7 @@ app.use(express.json())
 // app.use(myLogger)
 
 
-app.use("/api/auth", routers.auth)
+app.use("/api", routers.auth)
 app.use("/api", verifyJWT, [routers.men, routers.events])
 
 app.use(ErrorHandler)

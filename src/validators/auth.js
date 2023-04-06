@@ -21,6 +21,11 @@ const validateSignInRequest = [
         .withMessage("Password must be at least 6 character long"),
 ];
 
+const validateCreatePasswordRequest = [
+    check('password').notEmpty().withMessage(`password field is required`),
+    check('email').notEmpty().withMessage(`confirm password field is required`)
+]
+
 const verifyJWT = (req, res, next) => {
     try {
         const tokenString = req.headers.authorization
@@ -56,5 +61,6 @@ const verifyJWT = (req, res, next) => {
 module.exports = {
     validateSignUpRequest,
     validateSignInRequest,
+    validateCreatePasswordRequest,
     verifyJWT
 }

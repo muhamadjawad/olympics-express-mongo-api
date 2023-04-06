@@ -86,4 +86,36 @@ const signIn = async (req, res, next) => {
     }
 };
 
-module.exports = { signUp, signIn }
+const createPassword = async (req, res, next) => {
+    try {
+        const { password, email } = req.body
+
+        const targettedUser = await userCollection.findOne({ email: email })
+
+        if (targettedUser) {
+            const newPassword = await bcrypt.hash(password, 10);
+            await userCollection.findByIdAndUpdate(targettedUser._id,
+                {
+                    $set: { hash_password: String(newPassword) }
+                }
+            ).then((data) => {
+                if (data) {
+                    return res.status(200).json({
+                        data: true,
+                        message: "password changed"
+                    })
+                }
+            }
+
+            )
+        }
+        else {
+            CustomError(`user does not exist`, 400)
+        }
+
+    } catch (error) {
+        next(error)
+    }
+}
+
+module.exports = { signUp, signIn, createPassword }

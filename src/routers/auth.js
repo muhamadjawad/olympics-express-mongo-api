@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const { auth } = require('../controllers');
 const { isRequestValidated } = require('../validators');
-const { validateSignUpRequest, validateSignInRequest } = require('../validators/auth');
+const { validateSignUpRequest, validateSignInRequest, validateCreatePasswordRequest } = require('../validators/auth');
 
 router.route("/signup").post(
     validateSignUpRequest,
@@ -15,5 +15,12 @@ router.route("/signin").post(
     isRequestValidated,
     auth.signInUser
 )
+
+router.route("/createpassword").post(
+    validateCreatePasswordRequest,
+    isRequestValidated,
+    auth.createUserPassword 
+)
+
 
 module.exports = router
