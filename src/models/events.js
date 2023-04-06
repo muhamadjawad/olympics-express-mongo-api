@@ -35,7 +35,6 @@ const eventsSchema = new mongoose.Schema({
         unique: false,
         enum: {
             values: ['pak', 'india', 'asia'],
-            message: "galta"
         }
     }
 },
