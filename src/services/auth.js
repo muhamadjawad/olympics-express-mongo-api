@@ -50,6 +50,7 @@ const signUp = async (req) => {
 }
 
 const signIn = async (req, res, next) => {
+    const TOKEN_EXPIRY_TIME = '1hr'
     try {
         const { username, email, password } = req.body;
         // const user = await userCollection.findOne({ email: email });
@@ -61,10 +62,11 @@ const signIn = async (req, res, next) => {
                 try {
                     const token = jwt.sign(
                         { _id: user._id, role: user.role },
-                        process.env.JWT_SECRET, { expiresIn: "30d" });
+                        process.env.JWT_SECRET, { expiresIn: TOKEN_EXPIRY_TIME });
                     const { _id, firstName, lastName, email, role, fullName } = user;
                     resp = {
                         token,
+                        expiry: TOKEN_EXPIRY_TIME,
                         user: { _id, firstName, lastName, email, role, fullName },
                     }
                 } catch (error) {
