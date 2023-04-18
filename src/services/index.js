@@ -1,7 +1,11 @@
 const events = require('./events')
-const auth = require ('./auth')
+const auth = require('./auth')
+const authors = require('./authors')
+const post = require('./post')
 
 module.exports = {
     events,
-    auth
+    auth,
+    authors,
+    post
 }

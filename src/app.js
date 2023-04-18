@@ -17,7 +17,7 @@ app.use(express.json())
 
 
 app.use("/api", routers.auth)
-app.use("/api", verifyJWT, [routers.men, routers.events])
+app.use("/api", verifyJWT, [routers.men, routers.events, routers.author, routers.post])
 
 app.use(ErrorHandler)
 
