@@ -16,11 +16,15 @@ router.route("/signin").post(
     auth.signInUser
 )
 
-router.route("/createpassword").post(
+router.route("/changepassword").post(
     validateCreatePasswordRequest,
     isRequestValidated,
     auth.createUserPassword 
 )
+
+// router.route ("/sendotp").post (
+//     auth.
+// )
 
 
 module.exports = router

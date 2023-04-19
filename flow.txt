@@ -1,0 +1,9 @@
+Password change Technique:
+
+-Send user link on email to rediect to change password
+-OR send them otp on 
+	+email
+	+on phone sms
+	+on whatsapp
+-Then chk if otp is same as sent on back end 
+-change password api
