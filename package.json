@@ -18,6 +18,8 @@
     "express-validator": "^6.15.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.1",
-    "nanoid": "^2.1.11"
+    "nanoid": "^2.1.11",
+    "otp-generator": "^4.0.1",
+    "twilio": "^4.10.0"
   }
 }

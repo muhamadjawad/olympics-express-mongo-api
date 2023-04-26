@@ -1,9 +1,12 @@
 require("dotenv").config()
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const otpGenerator = require('otp-generator')
+
 // const { response } = require("express");
 const { userCollection } = require("../models/users");
 const { CustomError } = require("../utils/customError");
+const { sendOTPSms } = require("../utils/otpSms");
 
 const signUp = async (req) => {
 
@@ -120,4 +123,21 @@ const createPassword = async (req, res, next) => {
     }
 }
 
-module.exports = { signUp, signIn, createPassword }
+const forgotPassword = async (req, res, next) => {
+    const { phone_number } = req.body
+
+    try {
+        const otp = otpGenerator.generate(6, { lowerCaseAlphabets: false, upperCaseAlphabets: false, specialChars: false });
+        await sendOTPSms()
+        console.log("otp", otp)
+        res.status(200).json({
+            data: true,
+            OTP: otp,
+            message: "otp sent"
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
+module.exports = { signUp, signIn, createPassword, forgotPassword }

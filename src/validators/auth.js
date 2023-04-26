@@ -26,6 +26,14 @@ const validateCreatePasswordRequest = [
     check('email').notEmpty().withMessage(`confirm password field is required`)
 ]
 
+const validatephoneNumberRequest = [
+    check("phone_number")
+        .notEmpty().withMessage("Phone number is required")
+        .isNumeric().withMessage("Invalid phone number")
+        .isLength({ min: 11, max: 11 }).withMessage("Invalid phone number")
+        .matches(/^03\d{2}\d{7}$/).withMessage("Not a pakistani number")
+]
+
 const verifyJWT = (req, res, next) => {
     try {
         const tokenString = req.headers.authorization
@@ -62,5 +70,6 @@ module.exports = {
     validateSignUpRequest,
     validateSignInRequest,
     validateCreatePasswordRequest,
+    validatephoneNumberRequest,
     verifyJWT
 }

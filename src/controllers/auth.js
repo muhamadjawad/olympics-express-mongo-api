@@ -34,8 +34,17 @@ const createUserPassword = async (req, res, next) => {
     }
 }
 
+const forgotpassword = async (req, res, next) => {
+    try {
+        await auth.forgotPassword(req, res, next)
+    } catch (error) {
+        next(error)
+    }
+}
+
 module.exports = {
     createUser,
     signInUser,
-    createUserPassword
+    createUserPassword,
+    forgotpassword
 }
