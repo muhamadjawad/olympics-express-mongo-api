@@ -1,6 +1,9 @@
 const S3 = require('aws-sdk/clients/s3')
 const fs = require('fs')
 const AWS = require('aws-sdk');
+const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
+const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
+var path = require('path')
 
 const bucketName = process.env.AWS_BUCKET_NAME
 const region = process.env.AWS_BUCKET_REGION
@@ -29,13 +32,14 @@ const uploadFileToS3 = (file) => {
 
     try {
         const fileStream = fs.createReadStream(file.path)
-        console.log("file",file)
-        // console.log("fileStream", fileStream)
+        fileExtension = path.extname(file.originalname)
+
         const uploadParams = {
             Bucket: bucketName,
-            Body: fileStream,
-            Key: `${file.filename}.jpg`,
-            ACL :"private"
+            Body: fileStream,//JSON.stringify(file, null, 2),
+            Key: `${file.filename}${fileExtension}`,
+            ContentType: file.mimeType
+            // ACL: "private"
         }
         return s3.upload(uploadParams).promise()
 
@@ -56,14 +60,33 @@ const getFileFromS3 = (imageKey) => {
 
 }
 
-const getImageURL = async (imageKey) => {
-    const url = await s3.getSignedUrl('getObject', {
-        Bucket: bucketName,
-        Key: imageKey,
-        // Expires: signedUrlExpireSeconds
-    })
-    console.log("url", url)
-    return url
+const getImageURL = async (imageKey, nextError) => {
+
+    try {
+        const getObjectParams = {
+            Bucket: bucketName,
+            Key: `${imageKey}`,
+            ContentType: "image/jpeg",
+        }
+
+        const command = new GetObjectCommand(getObjectParams)
+        const client = new S3Client({
+            credentials: {
+                accessKeyId: accessKey,
+                secretAccessKey: secretKey
+            },
+            region: region
+        })
+
+
+        const url = await getSignedUrl(client, command, { expiresIn: 3600 })
+        return url
+
+
+    } catch (error) {
+        console.log("Error", error)
+        nextError(error)
+    }
 }
 
 module.exports = {

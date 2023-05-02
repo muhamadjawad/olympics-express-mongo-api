@@ -7,7 +7,7 @@ const { author } = require('../controllers')
 
 router.route('/author')
     .get(author.findAllAuthors)
-    .post(author.createAuthor)
+    .post(upload.any(), author.createAuthor)
 
 router.route('/uploadimage')
     .post(upload.single('image'), author.uploadImage)

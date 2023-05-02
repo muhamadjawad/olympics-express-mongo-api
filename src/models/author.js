@@ -17,6 +17,9 @@ const authorsSchema = new mongoose.Schema({
         min: 6,
         required: true,
     },
+    imagePath: {
+        type: String
+    },
     posts: [
         {
             type: mongoose.Schema.Types.ObjectId,

@@ -53,7 +53,7 @@ const signUp = async (req) => {
 }
 
 const signIn = async (req, res, next) => {
-    const TOKEN_EXPIRY_TIME = '6hr'
+    const TOKEN_EXPIRY_TIME = '2d'
     try {
         const { username, email, password } = req.body;
         // const user = await userCollection.findOne({ email: email });

@@ -1,0 +1,416 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "rest_mongos_apis",
+    "dateExported": "2023-04-28T09:56:41.633Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "7b95d687-f987-4bc5-a57e-4f2fbedf3185",
+            "name": "events",
+            "containerId": "",
+            "created": "2023-03-28T08:43:54.990Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "a387144f-5369-43a0-944b-23550e499bfc",
+            "name": "mens",
+            "containerId": "",
+            "created": "2023-03-28T08:44:14.174Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "f2533283-b6d2-4a6a-881e-20608affcf31",
+            "name": "user",
+            "containerId": "",
+            "created": "2023-03-28T09:03:23.978Z",
+            "sortNum": 30000
+        },
+        {
+            "_id": "c4c80894-4b5c-46e1-a034-b836b2707c47",
+            "name": "author",
+            "containerId": "",
+            "created": "2023-04-18T07:51:31.762Z",
+            "sortNum": 40000
+        },
+        {
+            "_id": "20f591ee-7495-484f-9469-cbb841dd5c7b",
+            "name": "post",
+            "containerId": "",
+            "created": "2023-04-18T10:01:11.253Z",
+            "sortNum": 50000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "463fa056-6e93-4e99-8c84-c192da5d9f7c",
+            "colId": "c76cfd81-dccb-4d20-b81c-21bc629aa355",
+            "containerId": "7b95d687-f987-4bc5-a57e-4f2fbedf3185",
+            "name": "get all events",
+            "url": "/events",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-03-15T05:18:33.618Z",
+            "modified": "2023-04-18T07:24:48.802Z",
+            "headers": [
+                {
+                    "name": "jwt",
+                    "value": "jwt ayasash"
+                }
+            ],
+            "params": [
+                {
+                    "name": "country",
+                    "value": "asia",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "name",
+                    "value": "Pak",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "limit",
+                    "value": "4",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "page",
+                    "value": "3",
+                    "isDisabled": true,
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "f14ea879-2bc3-4cee-9e9d-f41d3d9a356a",
+            "colId": "c76cfd81-dccb-4d20-b81c-21bc629aa355",
+            "containerId": "a387144f-5369-43a0-944b-23550e499bfc",
+            "name": "create mens record",
+            "url": "/mens",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-03-14T11:07:04.136Z",
+            "modified": "2023-04-05T06:57:24.331Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"ranking\":12 ,\n  \"name\": \"Sixth\",\n  \"dob\": \"12 Dec 1998\",\n  \"country\": \"Indiaa\",\n  \"score\": \"34\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "fd4b8189-2c11-40f5-8c9a-827895e55a5f",
+            "colId": "c76cfd81-dccb-4d20-b81c-21bc629aa355",
+            "containerId": "7b95d687-f987-4bc5-a57e-4f2fbedf3185",
+            "name": "create event",
+            "url": "/events",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-03-15T06:39:35.270Z",
+            "modified": "2023-04-13T09:53:43.696Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Pak-NZ Series 1\",\n  \"date\": \"2023-03-30T19:00:00.000Z\",\n  \"winner\": \"New Zealand\",\n  \"edition\": 2,\n  \"country\": \"asia\",\n  \"man_of_the_match\": \"642d18527683dbe3906713ef\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "ae973f46-be20-44f9-8b79-235d3b6d9891",
+            "colId": "c76cfd81-dccb-4d20-b81c-21bc629aa355",
+            "containerId": "a387144f-5369-43a0-944b-23550e499bfc",
+            "name": "get single men",
+            "url": "/mens/642bf9368e6d419ba5e7a683",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2023-03-14T11:36:02.940Z",
+            "modified": "2023-04-05T06:57:40.659Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDJhOTZkZWJhNDZhZjZmZjYzNWJkYzgiLCJyb2xlIjoidXNlciIsImlhdCI6MTY4MDYwNTg3MywiZXhwIjoxNjgzMTk3ODczfQ.ANr6jnvgLOf8NzD6aYR8NHs-1a2MEK7ynK2JWPo0ftU"
+            },
+            "tests": []
+        },
+        {
+            "_id": "14d384ed-ac56-40ce-bf21-9c3f8f639ce5",
+            "colId": "c76cfd81-dccb-4d20-b81c-21bc629aa355",
+            "containerId": "a387144f-5369-43a0-944b-23550e499bfc",
+            "name": "update Men Record",
+            "url": "/mens/64105b1ee913a3d1e8126931",
+            "method": "PATCH",
+            "sortNum": 40000,
+            "created": "2023-03-14T11:41:39.253Z",
+            "modified": "2023-04-05T06:57:48.611Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"_id\": \"642bf9368e6d419ba5e7a683\",\n  \"ranking\": 3,\n  \"name\": \"Teesra Update nhkrna\",\n  \"dob\": \"2023-12-11T19:00:00.000Z\",\n  \"country\": \"Europe\",\n  \"score\": 34,\n  \"event\": \"100m\",\n  \"__v\": 0\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "64d097b2-1898-4e2f-b37f-e2890875a9e1",
+            "colId": "c76cfd81-dccb-4d20-b81c-21bc629aa355",
+            "containerId": "a387144f-5369-43a0-944b-23550e499bfc",
+            "name": "Delete Men Record",
+            "url": "/mens/64105b1ee913a3d1e8126931",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2023-03-14T11:48:21.644Z",
+            "modified": "2023-03-28T08:44:23.030Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "b3c5a83c-2994-46cd-bc40-6bcf8fd47363",
+            "colId": "c76cfd81-dccb-4d20-b81c-21bc629aa355",
+            "containerId": "a387144f-5369-43a0-944b-23550e499bfc",
+            "name": "get mens record",
+            "url": "/mens",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2023-03-14T07:26:44.118Z",
+            "modified": "2023-04-28T09:53:13.925Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"sort\": true\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "c653a26e-00e5-48fa-9a55-0d1b89f63dd9",
+            "colId": "c76cfd81-dccb-4d20-b81c-21bc629aa355",
+            "containerId": "f2533283-b6d2-4a6a-881e-20608affcf31",
+            "name": "signup",
+            "url": "/signup",
+            "method": "POST",
+            "sortNum": 80000,
+            "created": "2023-03-28T09:42:43.885Z",
+            "modified": "2023-04-06T07:43:55.522Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"firstName\": \"Usman\",\n  \"lastName\": \"Shabbir\",\n  \"username\": \"usman3\",\n  \"email\": \"usman3@gmail.com\",\n  \"password\": \"password123\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "ca9f350d-f428-4230-b736-c60f61ac454b",
+            "colId": "c76cfd81-dccb-4d20-b81c-21bc629aa355",
+            "containerId": "f2533283-b6d2-4a6a-881e-20608affcf31",
+            "name": "sign In",
+            "url": "/signin",
+            "method": "POST",
+            "sortNum": 90000,
+            "created": "2023-03-29T08:05:11.077Z",
+            "modified": "2023-04-12T10:47:14.301Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"us1\",\n  \"email\": \"usman@gmail.com\",\n  \"password\": \"jawad123\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "d3913f80-f130-45b5-8e49-0f244a3fde38",
+            "colId": "c76cfd81-dccb-4d20-b81c-21bc629aa355",
+            "containerId": "f2533283-b6d2-4a6a-881e-20608affcf31",
+            "name": "change password",
+            "url": "/changepassword",
+            "method": "POST",
+            "sortNum": 100000,
+            "created": "2023-04-06T07:52:28.023Z",
+            "modified": "2023-04-19T07:41:53.784Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"password\": \"jawad123\",\n  \"email\": \"usman@gmail.com\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "26b09cad-6569-452f-8585-f462937de3b2",
+            "colId": "c76cfd81-dccb-4d20-b81c-21bc629aa355",
+            "containerId": "c4c80894-4b5c-46e1-a034-b836b2707c47",
+            "name": "create author",
+            "url": "/author",
+            "method": "POST",
+            "sortNum": 110000,
+            "created": "2023-04-18T07:51:39.029Z",
+            "modified": "2023-04-28T07:33:52.383Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "firstName",
+                        "value": "Shahnihal"
+                    },
+                    {
+                        "name": "lastName",
+                        "value": "alwani",
+                        "isDisabled": true
+                    },
+                    {
+                        "name": "email",
+                        "value": "s@gmail.com",
+                        "isDisabled": true
+                    }
+                ],
+                "files": [
+                    {
+                        "name": "image",
+                        "value": "c:\\Users\\User\\Pictures\\Saved Pictures\\2.jpeg"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "e3a4f617-724f-4ab5-8586-9e9c1317e4f6",
+            "colId": "c76cfd81-dccb-4d20-b81c-21bc629aa355",
+            "containerId": "c4c80894-4b5c-46e1-a034-b836b2707c47",
+            "name": "get all authors",
+            "url": "/author",
+            "method": "GET",
+            "sortNum": 120000,
+            "created": "2023-04-18T08:43:37.233Z",
+            "modified": "2023-04-18T08:43:49.229Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "16bf6efd-2088-45ba-8558-fb7638256eca",
+            "colId": "c76cfd81-dccb-4d20-b81c-21bc629aa355",
+            "containerId": "20f591ee-7495-484f-9469-cbb841dd5c7b",
+            "name": "create post",
+            "url": "/post",
+            "method": "POST",
+            "sortNum": 130000,
+            "created": "2023-04-18T10:01:20.301Z",
+            "modified": "2023-04-18T10:36:03.639Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\": \"How to install MAc\",\n  \"date\": \"2023-03-30T19:00:00.000Z\",\n  \"authorId\": \"643e53611ca76c7326896280\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "4d30d1dc-d791-439c-9443-b5bf0600a672",
+            "colId": "c76cfd81-dccb-4d20-b81c-21bc629aa355",
+            "containerId": "20f591ee-7495-484f-9469-cbb841dd5c7b",
+            "name": "get all posts",
+            "url": "/post",
+            "method": "GET",
+            "sortNum": 140000,
+            "created": "2023-04-18T10:23:22.250Z",
+            "modified": "2023-04-18T10:23:28.763Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "f58c4e1b-2774-40b8-af2c-8b1a5d95580e",
+            "colId": "c76cfd81-dccb-4d20-b81c-21bc629aa355",
+            "containerId": "f2533283-b6d2-4a6a-881e-20608affcf31",
+            "name": "forgotpassword",
+            "url": "/forgotpassword",
+            "method": "POST",
+            "sortNum": 150000,
+            "created": "2023-04-19T07:59:18.504Z",
+            "modified": "2023-04-19T10:20:09.016Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"phone_number\":\"03213435623\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "178f1eb3-c2bc-4c97-a948-9f276d9d7b2c",
+            "colId": "c76cfd81-dccb-4d20-b81c-21bc629aa355",
+            "containerId": "c4c80894-4b5c-46e1-a034-b836b2707c47",
+            "name": "image upload",
+            "url": "/uploadimage",
+            "method": "POST",
+            "sortNum": 160000,
+            "created": "2023-04-26T10:43:08.776Z",
+            "modified": "2023-04-28T06:45:31.920Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [],
+                "files": [
+                    {
+                        "name": "image",
+                        "value": "c:\\Users\\User\\Pictures\\Saved Pictures\\2.jpeg"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "70f159d0-bb2a-400c-8e2d-1a73d9efb0d6",
+            "colId": "c76cfd81-dccb-4d20-b81c-21bc629aa355",
+            "containerId": "c4c80894-4b5c-46e1-a034-b836b2707c47",
+            "name": "download Image",
+            "url": "/downloadimage/9899a04d1d68ae52595e4585e1d9775f",
+            "method": "GET",
+            "sortNum": 170000,
+            "created": "2023-04-27T10:33:58.647Z",
+            "modified": "2023-04-28T05:40:36.699Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ],
+    "settings": {
+        "auth": {
+            "type": "bearer",
+            "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDJkMTg1Mjc2ODNkYmUzOTA2NzEzZWYiLCJyb2xlIjoidXNlciIsImlhdCI6MTY4MjY1OTgzNywiZXhwIjoxNjgyNjgxNDM3fQ.gYYTqZUQez-L9G8V4QjKWuKmtHT69SgDFWQgi3OL-_0"
+        },
+        "tests": [
+            {
+                "type": "set-env-var",
+                "custom": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDJkMTg1Mjc2ODNkYmUzOTA2NzEzZWYiLCJyb2xlIjoidXNlciIsImlhdCI6MTY4MDY3NzA3NywiZXhwIjoxNjgzMjY5MDc3fQ.S01d6NAsv0Fn5N5lLRDnC7AJtMjLCi36eMDgEeqOlfY",
+                "action": "setto",
+                "value": "{{jwt}}"
+            }
+        ],
+        "options": {
+            "baseUrl": "localhost:3001/api"
+        }
+    }
+}

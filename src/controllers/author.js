@@ -39,6 +39,8 @@ const uploadImage = async (req, res, next) => {
         const info = req.body.description
 
         const result = await uploadFileToS3(file)
+
+        // getImageURL()
         // await unlinkFile(file.path)
         let response = {
             filename: file.originalname,
@@ -57,10 +59,10 @@ const downloadImage = async (req, res, next) => {
         const { key } = req.params
         const imageKey = key
 
-        const url = await getImageURL(imageKey)
-        const readStream = getFileFromS3(imageKey)
+        const url = await getImageURL(imageKey, next)
+        // const readStream = getFileFromS3(imageKey)
         // console.log("readStream", readStream)
-        readStream.pipe(res)
+        // readStream.pipe(res)
 
         let response = {
             // filename: file.originalname,
