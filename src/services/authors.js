@@ -1,6 +1,7 @@
 const { authorsCollection } = require("../models/author");
 const { CustomError } = require("../utils/customError");
 const { uploadFileToS3, getImageURL } = require("../utils/s3");
+const { unlink } = require('fs/promises');
 
 const getAllAuthors = async (req) => {
 
@@ -32,16 +33,31 @@ const postAuthor = async (req) => {
     if (Array.isArray(files)) {
         file = files[0] //profileImage
     }
+    else {
+        CustomError("Profile Image problem")
+    }
 
     const user = await authorsCollection.find(body);
 
-    const bucketResult = await uploadFileToS3(file)
-    if (bucketResult) {
-        imageKey = bucketResult.Key
-        path = await getImageURL(imageKey)
-    }
-
     if (user.length === 0) {
+
+        const bucketResult = await uploadFileToS3(file) // uplaoding to s3
+        const imageKey = bucketResult.Key
+        if (bucketResult) {
+            //means uploaded then find image url
+            path = await getImageURL(imageKey)
+        }
+        else {
+            CustomError({ msg: "failed to uplaod image" })
+        }
+
+        const deleteFile = `${file.path}`
+
+        try {
+            await unlink(deleteFile);
+        } catch (error) {
+            CustomError({ msg: "Something gone wrong in deletion" })
+        }
 
         body.imagePath = path
 

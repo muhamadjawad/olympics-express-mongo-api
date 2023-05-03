@@ -28,18 +28,17 @@ const s3 = new AWS.S3()
 
 //upload file to s3
 
-const uploadFileToS3 = (file) => {
+const uploadFileToS3 = async (file) => {
 
     try {
         const fileStream = fs.createReadStream(file.path)
         fileExtension = path.extname(file.originalname)
-
         const uploadParams = {
             Bucket: bucketName,
-            Body: fileStream,//JSON.stringify(file, null, 2),
+            Body: fileStream,
             Key: `${file.filename}${fileExtension}`,
             ContentType: file.mimeType
-            // ACL: "private"
+            // ACL: "private"()
         }
         return s3.upload(uploadParams).promise()
 
